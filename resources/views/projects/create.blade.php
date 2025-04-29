@@ -62,3 +62,18 @@
 </div>
 <!-- END Page Content -->
 @endsection
+
+
+
+
+@push('js')
+<!-- Page JS Plugins  -->
+<script src="{{ url('assets/js/plugins/ckeditor5-classic/build/ckeditor.js') }}"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#description'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+@endpush

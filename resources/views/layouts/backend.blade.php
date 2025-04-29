@@ -31,40 +31,7 @@
   <!-- Page Container -->
   
   <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow">
-    <!-- Side Overlay-->
-    <aside id="side-overlay">
-      <!-- Side Header -->
-      <div class="bg-image" style="background-image: url('{{ asset('media/various/bg_side_overlay_header.jpg') }}');">
-        <div class="bg-primary-op">
-          <div class="content-header">
-            <!-- User Avatar -->
-            <a class="img-link me-1" href="javascript:void(0)">
-              <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
-            </a>
-            <!-- END User Avatar -->
 
-            <!-- User Info -->
-            <div class="ms-2">
-              <a class="text-white fw-semibold" href="javascript:void(0)">George Taylor</a>
-              <div class="text-white-75 fs-sm">Full Stack Developer</div>
-            </div>
-            <!-- END User Info -->
-
-            <!-- Close Side Overlay -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <a class="ms-auto text-white" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
-              <i class="fa fa-times-circle"></i>
-            </a>
-            <!-- END Close Side Overlay -->
-          </div>
-        </div>
-      </div>
-      <!-- END Side Header -->
-
-   
-      <!-- END Side Content -->
-    </aside>
-    <!-- END Side Overlay -->
 
     @include('layouts.partials.sidebar')
 
@@ -209,12 +176,7 @@
           </div>
           <!-- END Notifications Dropdown -->
 
-          <!-- Toggle Side Overlay -->
-          <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-          <button type="button" class="btn btn-alt-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-            <i class="far fa-fw fa-list-alt"></i>
-          </button>
-          <!-- END Toggle Side Overlay -->
+       
         </div>
         <!-- END Right Section -->
       </div>

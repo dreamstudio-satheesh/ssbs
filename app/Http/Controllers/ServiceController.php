@@ -19,7 +19,7 @@ class ServiceController extends Controller
     public function create()
     {
         $categories = Category::where('type', 'service')->get();
-        return view('services.create');
+        return view('services.create',compact('categories'));
     }
 
     public function store(ServiceRequest $request)
