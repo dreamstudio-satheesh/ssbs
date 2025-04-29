@@ -4,14 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\{
     HomeController,
-    AboutController,
+    BlogController,
     ProductController,
     ServiceController,
     ProjectController,
     PhotoGalleryController,
     AwardController,
     CategoryController,
-    ContactController
+    ContactController,
+    TestimonialController,
+    SliderController,
+    SeoSettingController,
+    EnquiryController,
+    SteelRateController
 };
 
 
@@ -49,14 +54,19 @@ Route::middleware('auth')->get('/', [HomeController::class, 'index'])->name('das
 
 // Admin Protected Routes (Require Auth)
 Route::middleware('auth')->group(function () {
-    Route::resource('about', AboutController::class);
+    Route::resource('blogs', BlogController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('projects', ProjectController::class);
     Route::resource('galleries', PhotoGalleryController::class);
     Route::resource('awards', AwardController::class);
-    Route::resource('contacts', ContactController::class)->only(['index', 'show']);
+    Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('testimonials', TestimonialController::class);
+    Route::resource('sliders', SliderController::class);
+    Route::resource('seo-settings', SeoSettingController::class)->only(['index', 'update']);
+    Route::resource('enquiries', EnquiryController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('steel-rates', SteelRateController::class);
 });
 
 
