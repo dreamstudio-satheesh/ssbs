@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\SeoSetting;
+use App\Models\SteelRate;
 use Illuminate\Http\Request;
 
-class SeoSettingController extends Controller
+class SteelRateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class SeoSettingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SeoSetting  $seoSetting
+     * @param  \App\Models\SteelRate  $steelRate
      * @return \Illuminate\Http\Response
      */
-    public function show(SeoSetting $seoSetting)
+    public function show(SteelRate $steelRate)
     {
         //
     }
@@ -53,10 +53,10 @@ class SeoSettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SeoSetting  $seoSetting
+     * @param  \App\Models\SteelRate  $steelRate
      * @return \Illuminate\Http\Response
      */
-    public function edit(SeoSetting $seoSetting)
+    public function edit(SteelRate $steelRate)
     {
         //
     }
@@ -65,10 +65,10 @@ class SeoSettingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SeoSetting  $seoSetting
+     * @param  \App\Models\SteelRate  $steelRate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SeoSetting $seoSetting)
+    public function update(Request $request, SteelRate $steelRate)
     {
         //
     }
@@ -76,10 +76,10 @@ class SeoSettingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SeoSetting  $seoSetting
+     * @param  \App\Models\SteelRate  $steelRate
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SeoSetting $seoSetting)
+    public function destroy(SteelRate $steelRate)
     {
         //
     }

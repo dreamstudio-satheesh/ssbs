@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
@@ -16,7 +16,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::all();
-        return view('admin.blogs.index', compact('blogs'));
+        return view('blogs.index', compact('blogs'));
     }
 
     /**
@@ -26,7 +26,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.blogs.create');
+        return view('blogs.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('admin.blogs.show', compact('blog'));
+        return view('blogs.show', compact('blog'));
     }
 
     /**
@@ -70,7 +70,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view('admin.blogs.edit', compact('blog'));
+        return view('blogs.edit', compact('blog'));
     }
 
     /**

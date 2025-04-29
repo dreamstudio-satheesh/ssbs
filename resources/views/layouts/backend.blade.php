@@ -19,12 +19,12 @@
   <!-- Modules -->
   <link rel="stylesheet" id="css-main" href="{{ url('assets/css/dashmix.min.css') }}">
 
-  @yield('css')
+  @stack('css')
   
 
   <!-- Alternatively, you can also include a specific color theme after the main stylesheet to alter the default color theme of the template -->
   {{-- @vite(['resources/sass/main.scss', 'resources/sass/dashmix/themes/xwork.scss', 'resources/js/dashmix/app.js']) --}}
-  @yield('js')
+
 </head>
 
 <body>
@@ -61,179 +61,12 @@
       </div>
       <!-- END Side Header -->
 
-      <!-- Side Content -->
-      <div class="content-side">
-        <div class="block pull-x mb-0">
-          <!-- Sidebar -->
-          <div class="block-content block-content-sm block-content-full bg-body">
-            <span class="text-uppercase fs-sm fw-bold">Sidebar</span>
-          </div>
-          <div class="block-content block-content-full">
-            <div class="row g-sm text-center">
-              <div class="col-6 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="sidebar_style_dark" href="javascript:void(0)">Dark</a>
-              </div>
-              <div class="col-6 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="sidebar_style_light" href="javascript:void(0)">Light</a>
-              </div>
-            </div>
-          </div>
-          <!-- END Sidebar -->
-
-          <!-- Header -->
-          <div class="block-content block-content-sm block-content-full bg-body">
-            <span class="text-uppercase fs-sm fw-bold">Header</span>
-          </div>
-          <div class="block-content block-content-full">
-            <div class="row g-sm text-center mb-2">
-              <div class="col-6 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="header_style_dark" href="javascript:void(0)">Dark</a>
-              </div>
-              <div class="col-6 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="header_style_light" href="javascript:void(0)">Light</a>
-              </div>
-              <div class="col-6 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="header_mode_fixed" href="javascript:void(0)">Fixed</a>
-              </div>
-              <div class="col-6 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="header_mode_static" href="javascript:void(0)">Static</a>
-              </div>
-            </div>
-          </div>
-          <!-- END Header -->
-
-          <!-- Content -->
-          <div class="block-content block-content-sm block-content-full bg-body">
-            <span class="text-uppercase fs-sm fw-bold">Content</span>
-          </div>
-          <div class="block-content block-content-full">
-            <div class="row g-sm text-center">
-              <div class="col-6 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="content_layout_boxed" href="javascript:void(0)">Boxed</a>
-              </div>
-              <div class="col-6 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="content_layout_narrow" href="javascript:void(0)">Narrow</a>
-              </div>
-              <div class="col-12 mb-1">
-                <a class="d-block py-3 bg-body-dark fw-semibold text-dark" data-toggle="layout" data-action="content_layout_full_width" href="javascript:void(0)">Full Width</a>
-              </div>
-            </div>
-          </div>
-          <!-- END Content -->
-        </div>
-        <div class="block pull-x mb-0">
-          <!-- Content -->
-          <div class="block-content block-content-sm block-content-full bg-body">
-            <span class="text-uppercase fs-sm fw-bold">Heading</span>
-          </div>
-          <div class="block-content">
-            <p>
-              Content..
-            </p>
-          </div>
-          <!-- END Content -->
-        </div>
-      </div>
+   
       <!-- END Side Content -->
     </aside>
     <!-- END Side Overlay -->
 
-    <!-- Sidebar -->
-   
-    <nav id="sidebar" aria-label="Main Navigation">
-      <!-- Side Header -->
-      <div class="bg-header-dark">
-        <div class="content-header bg-white-5">
-          <!-- Logo -->
-          <a class="fw-semibold text-white tracking-wide" href="/">
-            <span class="smini-visible">
-              D<span class="opacity-75">x</span>
-            </span>
-            <span class="smini-hidden">
-              SSBS <span class="opacity-75">- Starlit</span>
-            </span>
-          </a>
-          <!-- END Logo -->
-
-          <!-- Options -->
-          <div>
-            <!-- Toggle Sidebar Style -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <!-- Class Toggle, functionality initialized in Helpers.dmToggleClass() -->
-            <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#sidebar-style-toggler" data-class="fa-toggle-off fa-toggle-on" onclick="Dashmix.layout('sidebar_style_toggle');Dashmix.layout('header_style_toggle');">
-              <i class="fa fa-toggle-off" id="sidebar-style-toggler"></i>
-            </button>
-            <!-- END Toggle Sidebar Style -->
-
-            <!-- Dark Mode -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="class-toggle" data-target="#dark-mode-toggler" data-class="far fa" onclick="Dashmix.layout('dark_mode_toggle');">
-              <i class="far fa-moon" id="dark-mode-toggler"></i>
-            </button>
-            <!-- END Dark Mode -->
-
-            <!-- Close Sidebar, Visible only on mobile screens -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-alt-secondary d-lg-none" data-toggle="layout" data-action="sidebar_close">
-              <i class="fa fa-times-circle"></i>
-            </button>
-            <!-- END Close Sidebar -->
-          </div>
-          <!-- END Options -->
-        </div>
-      </div>
-      <!-- END Side Header -->
-
-      <!-- Sidebar Scrolling -->
-      <div class="js-sidebar-scroll">
-        <!-- Side Navigation -->
-        <div class="content-side content-side-full">
-          <ul class="nav-main">
-            <li class="nav-main-item">
-              <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
-                <i class="nav-main-link-icon fa fa-location-arrow"></i>
-                <span class="nav-main-link-name">Dashboard</span>
-                <span class="nav-main-link-badge badge rounded-pill bg-primary">5</span>
-              </a>
-            </li>
-            <li class="nav-main-heading">Various</li>
-            <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-              <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                <i class="nav-main-link-icon fa fa-lightbulb"></i>
-                <span class="nav-main-link-name">Examples</span>
-              </a>
-              <ul class="nav-main-submenu">
-                <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="/pages/datatables">
-                    <span class="nav-main-link-name">DataTables</span>
-                  </a>
-                </li>
-                <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="/pages/slick">
-                    <span class="nav-main-link-name">Slick Slider</span>
-                  </a>
-                </li>
-                <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}" href="/pages/blank">
-                    <span class="nav-main-link-name">Blank</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-main-heading">More</li>
-            <li class="nav-main-item">
-              <a class="nav-main-link" href="/">
-                <i class="nav-main-link-icon fa fa-globe"></i>
-                <span class="nav-main-link-name">Landing</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!-- END Side Navigation -->
-      </div>
-      <!-- END Sidebar Scrolling -->
-    </nav>
-    <!-- END Sidebar -->
+    @include('layouts.partials.sidebar')
 
     <!-- Header -->
     <header id="page-header">
@@ -433,7 +266,7 @@
             Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold"  target="_blank">pixelcave</a>
           </div>
           <div class="col-sm-6 order-sm-1 text-center text-sm-start">
-            <a class="fw-semibold"  target="_blank">Dashmix</a> &copy;
+            <a class="fw-semibold"  target="_blank">ABC</a> &copy;
             <span data-toggle="year-copy"></span>
           </div>
         </div>
@@ -442,6 +275,9 @@
     <!-- END Footer -->
   </div>
   <!-- END Page Container -->
+
+  <script src="{{ url('assets/js/dashmix.app.min.js') }}"></script>
+  @stack('js')
 </body>
 
 </html>

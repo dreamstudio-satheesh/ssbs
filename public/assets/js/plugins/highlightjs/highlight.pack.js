@@ -16857,7 +16857,7 @@ hljs.registerLanguage('pgsql', function(hljs) {
     'COL_DESCRIPTION OBJ_DESCRIPTION SHOBJ_DESCRIPTION ' +
     'TXID_CURRENT TXID_CURRENT_IF_ASSIGNED TXID_CURRENT_SNAPSHOT TXID_SNAPSHOT_XIP TXID_SNAPSHOT_XMAX ' +
     'TXID_SNAPSHOT_XMIN TXID_VISIBLE_IN_SNAPSHOT TXID_STATUS ' +
-    // https://www.postgresql.org/docs/11/static/functions-admin.html
+    // https://www.postgresql.org/docs/11/static/functions-html
     'CURRENT_SETTING SET_CONFIG BRIN_SUMMARIZE_NEW_VALUES BRIN_SUMMARIZE_RANGE BRIN_DESUMMARIZE_RANGE ' +
     'GIN_CLEAN_PENDING_LIST ' +
     // https://www.postgresql.org/docs/11/static/functions-trigger.html
