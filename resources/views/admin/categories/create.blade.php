@@ -1,35 +1,63 @@
 @extends('layouts.backend')
 
 @section('content')
-    <div class="block-header">
-        <h3>Create New Project</h3>
+<!-- Hero -->
+<div class="bg-body-light">
+    <div class="content content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">Create New Category</h1>
+            <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Categories</li>
+                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                </ol>
+            </nav>
+        </div>
     </div>
+</div>
+<!-- END Hero -->
 
-    <div class="block">
-        <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+<!-- Page Content -->
+<div class="content">
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">Category Details</h3>
+        </div>
+        <div class="block-content">
+            <form action="{{ route('categories.store') }}" method="POST">
+                @csrf
+                
+                <div class="row push">
+                    <div class="col-lg-8">
+                        <div class="mb-4">
+                            <label class="form-label" for="name">Category Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
 
-            <div class="form-group">
-                <label for="title">Project Title</label>
-                <input type="text" id="title" name="title" class="form-control" required>
-            </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="type">Category Type <span class="text-danger">*</span></label>
+                            <select class="form-select" id="type" name="type" required>
+                                <option value="">Select Type</option>
+                                <option value="product">Product</option>
+                                <option value="service">Service</option>
+                                <option value="blog">Blog</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
 
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="seo_title">SEO Title</label>
-                <input type="text" id="seo_title" name="seo_title" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="photos">Photos</label>
-                <input type="file" id="photos" name="photos[]" class="form-control" multiple>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Create Project</button>
-        </form>
+                        <div class="mb-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-check-circle opacity-50 me-1"></i> Create Category
+                            </button>
+                            <a href="{{ route('categories.index') }}" class="btn btn-alt-secondary">
+                                <i class="fa fa-times opacity-50 me-1"></i> Cancel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
+<!-- END Page Content -->
 @endsection
