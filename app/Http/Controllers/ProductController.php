@@ -17,7 +17,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('type', 'product')->get();
         return view('products.create', compact('categories'));
     }
 
@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //get all categories
-        $categories = Category::all();
+        $categories = Category::where('type', 'product')->get();
 
         return view('products.edit', compact('product','categories'));
     }

@@ -3,8 +3,9 @@
 // app/Http/Controllers/Admin/ServiceController.php
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\Category;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRequest;
 
 class ServiceController extends Controller
@@ -17,6 +18,7 @@ class ServiceController extends Controller
 
     public function create()
     {
+        $categories = Category::where('type', 'service')->get();
         return view('services.create');
     }
 
@@ -28,7 +30,8 @@ class ServiceController extends Controller
 
     public function edit(Service $service)
     {
-        return view('services.edit', compact('service'));
+        $categories = Category::where('type', 'service')->get();
+        return view('services.edit', compact('service', 'categories'));
     }
 
     public function update(ServiceRequest $request, Service $service)
