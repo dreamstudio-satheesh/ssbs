@@ -9,7 +9,7 @@
             D<span class="opacity-75">x</span>
           </span>
           <span class="smini-hidden">
-            Dash<span class="opacity-75">mix</span>
+            SSBS<span class="opacity-75"> - Starlit</span>
           </span>
         </a>
         <!-- END Logo -->
@@ -53,13 +53,13 @@
             </a>
           </li>
           <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->is('about/management') ? ' active' : '' }}" href="{{ url('about/management') }}">
+            <a class="nav-main-link{{ request()->is('testimonials') ? ' active' : '' }}" href="{{ url('testimonials') }}">
               <i class="nav-main-link-icon fa fa-users-cog"></i>
-              <span class="nav-main-link-name">Management</span>
+              <span class="nav-main-link-name">Testimonials</span>
             </a>
           </li>
           <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->is('about/awards') ? ' active' : '' }}" href="{{ url('about/awards') }}">
+            <a class="nav-main-link{{ request()->is('awards') ? ' active' : '' }}" href="{{ url('awards') }}">
               <i class="nav-main-link-icon fa fa-trophy"></i>
               <span class="nav-main-link-name">Awards</span>
             </a>
@@ -109,14 +109,7 @@
               <span class="nav-main-link-name">Client Feedback</span>
             </a>
           </li>
-  
-          <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->routeIs('awards.*') ? ' active' : '' }}" href="{{ route('awards.index') }}">
-              <i class="nav-main-link-icon fa fa-certificate"></i>
-              <span class="nav-main-link-name">Awards & Certifications</span>
-            </a>
-          </li>
-  
+          
           <li class="nav-main-item">
             <a class="nav-main-link{{ request()->routeIs('contacts.*') ? ' active' : '' }}" href="{{ route('contacts.index') }}">
               <i class="nav-main-link-icon fa fa-envelope"></i>
