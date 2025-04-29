@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <title>Login - App</title>
+    <title>Login - Starlit App</title>
 
     <meta name="description" content="Admin Panel">
     <meta name="author" content="pixelcave">
@@ -29,7 +29,7 @@
                   <div class="block-content block-content-full px-lg-5 py-md-5 py-lg-6">
                     <div class="mb-2 text-center">
                       <a class="link-fx fw-bold fs-1" href="{{ url('/') }}">
-                        <span class="text-dark">Dash</span><span class="text-primary">mix</span>
+                        <span class="text-dark">Starlit</span><span class="text-primary">Steel</span>
                       </a>
                       <p class="text-uppercase fw-bold fs-sm text-muted">Sign In</p>
                     </div>

@@ -9,7 +9,7 @@
             D<span class="opacity-75">x</span>
           </span>
           <span class="smini-hidden">
-            SSBS<span class="opacity-75"> - Starlit</span>
+            Starlit<span class="opacity-75"> Steel</span>
           </span>
         </a>
         <!-- END Logo -->
@@ -149,13 +149,6 @@
             <a class="nav-main-link{{ request()->is('social-media') ? ' active' : '' }}" href="{{ url('social-media') }}">
               <i class="nav-main-link-icon fa fa-share-alt"></i>
               <span class="nav-main-link-name">Social Media Links</span>
-            </a>
-          </li>
-  
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ url('logout') }}">
-              <i class="nav-main-link-icon fa fa-sign-out-alt"></i>
-              <span class="nav-main-link-name">Logout</span>
             </a>
           </li>
   
