@@ -74,15 +74,7 @@
                 <a class="dropdown-item" href="javascript:void(0)">
                   <i class="far fa-fw fa-user me-1"></i> Profile
                 </a>
-                <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                  <span><i class="far fa-fw fa-envelope me-1"></i> Inbox</span>
-                  <span class="badge bg-primary rounded-pill">3</span>
-                </a>
-                <a class="dropdown-item" href="javascript:void(0)">
-                  <i class="far fa-fw fa-file-alt me-1"></i> Invoices
-                </a>
-                <div role="separator" class="dropdown-divider"></div>
-
+               
                 <!-- Toggle Side Overlay -->
                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                 <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
@@ -91,9 +83,14 @@
                 <!-- END Side Overlay -->
 
                 <div role="separator" class="dropdown-divider"></div>
-                <a class="dropdown-item" href="javascript:void(0)">
-                  <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
-                </a>
+                <li class="dropdown-item">
+                  <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                      @csrf
+                      <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                          <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
+                      </a>
+                  </form>
+              </li>
               </div>
             </div>
           </div>

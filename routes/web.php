@@ -35,7 +35,7 @@ use App\Http\Controllers\{
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 
-// Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::match(['get', 'post'], '/dashboard', function () {
     return view('dashboard');
