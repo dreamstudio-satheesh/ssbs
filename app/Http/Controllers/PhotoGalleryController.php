@@ -1,45 +1,65 @@
 <?php
 
-// app/Http/Controllers/Admin/PhotoGalleryController.php
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\PhotoGallery;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PhotoGalleryRequest;
 
 class PhotoGalleryController extends Controller
 {
     public function index()
     {
-        $photos = PhotoGallery::all();
-        return view('photo_gallery.index', compact('photos'));
+        $galleries = PhotoGallery::with('category')->paginate(6);
+        return view('galleries.index', compact('galleries'));
     }
 
     public function create()
     {
-        return view('photo_gallery.create');
+        $categories = Category::all(); // Load categories
+        return view('galleries.create', compact('categories'));
     }
 
     public function store(PhotoGalleryRequest $request)
     {
-        PhotoGallery::create($request->validated());
-        return redirect()->route('photo_gallery.index');
+        $data = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            $data['photo_path'] = $request->file('photo')->store('galleries', 'public');
+        }
+
+        PhotoGallery::create($data);
+
+        return redirect()->route('galleries.index')->with('success', 'Photo added successfully.');
     }
 
-    public function edit(PhotoGallery $photoGallery)
+    public function edit(PhotoGallery $gallery)
     {
-        return view('photo_gallery.edit', compact('photoGallery'));
+        $categories = Category::all();
+        return view('galleries.edit', compact('gallery', 'categories'));
     }
 
-    public function update(PhotoGalleryRequest $request, PhotoGallery $photoGallery)
+    public function update(PhotoGalleryRequest $request, PhotoGallery $gallery)
     {
-        $photoGallery->update($request->validated());
-        return redirect()->route('photo_gallery.index');
+        $data = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            Storage::disk('public')->delete($gallery->photo_path);
+            $data['photo_path'] = $request->file('photo')->store('galleries', 'public');
+        }
+
+        $gallery->update($data);
+
+        return redirect()->route('galleries.index')->with('success', 'Photo updated successfully.');
     }
 
-    public function destroy(PhotoGallery $photoGallery)
+    public function destroy(PhotoGallery $gallery)
     {
-        $photoGallery->delete();
-        return redirect()->route('photo_gallery.index');
+        Storage::disk('public')->delete($gallery->photo_path);
+        $gallery->delete();
+
+        return redirect()->route('galleries.index')->with('success', 'Photo deleted successfully.');
     }
 }

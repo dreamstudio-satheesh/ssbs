@@ -10,7 +10,8 @@ class PhotoGalleryRequest extends FormRequest
     {
         return [
             'photo' => 'required|image|max:10240',
-            'caption' => 'nullable|string',
+            'title' => 'nullable|string',
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }

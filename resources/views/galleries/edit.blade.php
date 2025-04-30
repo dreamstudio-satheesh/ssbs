@@ -1,26 +1,34 @@
 @extends('layouts.backend')
 
 @section('content')
-    <div class="block-header">
-        <h3>Edit Photo: {{ $gallery->image }}</h3>
-    </div>
+<div class="content">
+    <h2>Edit Photo</h2>
+    <form action="{{ route('galleries.update', $gallery) }}" method="POST" enctype="multipart/form-data">
+        @csrf @method('PUT')
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" id="title" class="form-control" value="{{ $gallery->title }}" required>
+        </div>
 
-    <div class="block">
-        <form action="{{ route('galleries.update', $gallery->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+        <div class="mb-3">
+            <label for="category_id" class="form-label">Category</label>
+            <select name="category_id" id="category_id" class="form-control" required>
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}" {{ $gallery->category_id == $category->id ? 'selected' : '' }}>
+                    {{ $category->name }}
+                </option>
+                @endforeach
+            </select>
+        </div>
 
-            <div class="form-group">
-                <label for="image">Choose New Image</label>
-                <input type="file" id="image" name="image" class="form-control">
-                @if ($gallery->image)
-                    <div class="mt-3">
-                        <img src="{{ asset('storage/' . $gallery->image) }}" alt="Gallery Image" class="img-thumbnail" style="width: 150px;">
-                    </div>
-                @endif
-            </div>
+        <div class="mb-3">
+            <label for="photo" class="form-label">Photo</label>
+            <input type="file" name="photo" id="photo" class="form-control">
+        </div>
 
-            <button type="submit" class="btn btn-primary">Update Photo</button>
-        </form>
-    </div>
+        <img src="{{ asset('storage/'.$gallery->photo_path) }}" alt="Current Photo" width="200" class="mb-3">
+        <hr><br>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
 @endsection

@@ -9,6 +9,11 @@ class PhotoGallery extends Model
 {
     use HasFactory;
    
-    protected $fillable = ['title', 'photo_path'];
+    protected $fillable = ['title', 'photo_path', 'category_id'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     
 }
