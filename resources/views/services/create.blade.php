@@ -46,7 +46,7 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
-                            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="4" ></textarea>
                         </div>
 
                         <div class="mb-4">

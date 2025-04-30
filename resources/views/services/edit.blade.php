@@ -49,7 +49,7 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
-                            <textarea class="form-control" id="description" name="description" rows="4" required>{{ old('description', $service->description) }}</textarea>
+                            <textarea class="form-control" id="description" name="description" rows="4" >{{ old('description', $service->description) }}</textarea>
                         </div>
 
                         <div class="mb-4">

@@ -16,4 +16,9 @@ class Service extends Model
     protected $casts = [
         'photos' => 'array'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

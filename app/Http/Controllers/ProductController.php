@@ -25,7 +25,6 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $photoPaths = [];
-        
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {
                 $photoPaths[] = $photo->store('products', 'public');
@@ -36,7 +35,7 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'title' => $request->title,
             'description' => $request->description,
-            'photos' => json_encode($photoPaths),
+            'photos' => $photoPaths,
             'facilities' => $request->facilities,
             'seo_title' => $request->seo_title,
             'seo_keywords' => $request->seo_keywords,
@@ -54,7 +53,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $data = $request->validated();
-        $currentPhotos = json_decode($product->photos, true) ?? [];
+        $currentPhotos = $product->photos ?? [];
 
         // Handle new photo uploads
         if ($request->hasFile('photos')) {
@@ -68,7 +67,7 @@ class ProductController extends Controller
             foreach ($request->file('photos') as $photo) {
                 $newPhotoPaths[] = $photo->store('products', 'public');
             }
-            $data['photos'] = json_encode($newPhotoPaths);
+            $data['photos'] = ($newPhotoPaths);
         } else {
             // Keep existing photos if no new ones uploaded
             $data['photos'] = $product->photos;
@@ -82,7 +81,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         // Delete all associated photos
-        foreach (json_decode($product->photos, true) ?? [] as $photo) {
+        foreach ($product->photos ?? [] as $photo) {
             Storage::disk('public')->delete($photo);
         }
         

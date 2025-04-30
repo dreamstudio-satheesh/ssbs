@@ -10,7 +10,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::latest()->paginate(10);
+        $services = Service::latest()->get(); //->paginate(10);
         return response()->json(['services' => $services]);
     }
 

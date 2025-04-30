@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\{
 };
 
 // API Routes (public or authenticated if needed)
-Route::prefix('api')->group(function () {
+
     // Public API routes for Products, Services, Projects, etc.
     Route::get('products', [ApiProductController::class, 'index']);
     Route::get('products/{id}', [ApiProductController::class, 'show']);
@@ -34,4 +34,4 @@ Route::prefix('api')->group(function () {
     // Optionally, you can add POST routes for creating records if needed.
     // Example for adding products:
     // Route::post('products', [ApiProductController::class, 'store'])->middleware('auth:api');
-});
+
