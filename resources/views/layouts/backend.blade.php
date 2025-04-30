@@ -222,10 +222,10 @@
       <div class="content py-0">
         <div class="row fs-sm">
           <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-end">
-            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold"  target="_blank">pixelcave</a>
+            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold">4M Designer</a>
           </div>
           <div class="col-sm-6 order-sm-1 text-center text-sm-start">
-            <a class="fw-semibold"  target="_blank">ABC</a> &copy;
+            <a class="fw-semibold"  target="_blank">Starlit Steel</a> &copy;
             <span data-toggle="year-copy"></span>
           </div>
         </div>
