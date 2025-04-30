@@ -42,7 +42,7 @@
                                 <option value="service">Service</option>
                                 <option value="service">Project</option>
                                 <option value="blog">Blog</option>
-                                <option value="other">Other</option>
+                                <option value="other">Gallery</option>
                             </select>
                         </div>
 

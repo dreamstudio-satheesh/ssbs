@@ -43,7 +43,7 @@
                                 <option value="product" {{ old('type', $category->type) == 'product' ? 'selected' : '' }}>Product</option>
                                 <option value="service" {{ old('type', $category->type) == 'service' ? 'selected' : '' }}>Service</option>
                                 <option value="blog" {{ old('type', $category->type) == 'blog' ? 'selected' : '' }}>Blog</option>
-                                <option value="other" {{ old('type', $category->type) == 'other' ? 'selected' : '' }}>Other</option>
+                                <option value="gallery" {{ old('type', $category->type) == 'gallery' ? 'selected' : '' }}>Gallery</option>
                             </select>
                         </div>
 

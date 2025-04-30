@@ -52,10 +52,11 @@
 
 
 
-                    <div class="mb-3 ">
-
+                    <div class="block-content block-content-full block-content-sm bg-body-light text-end mb-3">
+                       
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
+
                 </form>
             </div>
         </div>

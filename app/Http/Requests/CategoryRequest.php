@@ -10,7 +10,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'type' => 'required|in:product,service,project',
+            'type' => 'required|in:product,service,project,gallery,blog',
         ];
     }
 }
