@@ -37,7 +37,7 @@
 
                         <div class="mb-4">
                             <label class="form-label" for="description">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="4">{{ old('description', $award->description) }}</textarea>
+                            <textarea class="form-control" id="descrip" name="description" rows="4">{{ old('description', $award->description) }}</textarea>
                         </div>
 
                         <div class="mb-4">
@@ -73,7 +73,7 @@
 <script src="{{ url('assets/js/plugins/ckeditor5-classic/build/ckeditor.js') }}"></script>
 <script>
     ClassicEditor
-        .create(document.querySelector('#description'))
+        .create(document.querySelector('#descrip'))
         .catch(error => {
             console.error(error);
         });
