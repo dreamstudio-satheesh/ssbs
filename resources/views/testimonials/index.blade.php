@@ -22,9 +22,9 @@
   <div class="block block-rounded">
     <div class="block-header block-header-default">
       <h3 class="block-title">All Testimonials</h3>
-      <a href="{{ route('testimonials.create') }}" class="btn btn-primary btn-sm">
+      {{-- <a href="{{ route('testimonials.create') }}" class="btn btn-primary btn-sm">
         <i class="fa fa-plus me-1"></i> Add New
-      </a>
+      </a> --}}
     </div>
     <div class="block-content">
 
