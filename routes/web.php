@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\{
     HomeController,
@@ -38,9 +40,27 @@ Route::get('/symlink', function () {
 });
 
 Route::get('/pull', function () {
-    $pull= Artisan::call('git:pull')->getOutput();
-    return '✅ git pull executed!<br> '.$pull;
-});
+    // Security check - require a secret token
+    if (request('token') !== config('app.git_pull_token')) {
+        abort(403, 'Unauthorized');
+    }
+
+    // Optional branch parameter
+    $branch = request('branch', config('app.git_branch', 'main'));
+
+    $exitCode = Artisan::call('git:pull', [
+        '--branch' => $branch
+    ]);
+
+    $output = Artisan::output();
+
+    return response()->json([
+        'success' => $exitCode === 0,
+        'output' => $output
+    ]);
+})->middleware('throttle:3,1'); // Limit to 3 requests per minute
+
+
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);

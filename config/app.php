@@ -70,6 +70,8 @@ return [
     */
 
     'timezone' => 'UTC',
+    'git_pull_token' => 'manifest', // Token to be used for git pull command
+    'git_branch' => env('GIT_BRANCH', 'master'), // Default branch to pull from
 
     /*
     |--------------------------------------------------------------------------
