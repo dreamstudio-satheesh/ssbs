@@ -13,13 +13,7 @@ class SteelRateRequest extends FormRequest
      */
     public function authorize()
     {
-        // Only allow authenticated users for create, store, edit, update, destroy
-        if (in_array($this->route()->getActionMethod(), ['store', 'update', 'destroy'])) {
-            return $this->user() !== null;
-        }
-
-        // Allow guests to view index/show
-        return true;
+        return auth()->check();
     }
 
     /**

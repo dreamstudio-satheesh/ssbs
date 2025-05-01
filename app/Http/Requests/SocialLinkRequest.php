@@ -6,6 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SocialLinkRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return auth()->check();
+    }
+    
     public function rules()
     {
         return [
