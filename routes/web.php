@@ -16,6 +16,7 @@ use App\Http\Controllers\{
     SliderController,
     PageController,
     SteelRateController,
+    SocialLinkController,
     TestimonialController
 };
 
@@ -59,6 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('pages', PageController::class);
     Route::resource('testimonials', TestimonialController::class)->only(['index', 'show', 'destroy']);
     Route::resource('steel-rates', SteelRateController::class);
+    Route::resource('social-links', SocialLinkController::class);
 });
 
 

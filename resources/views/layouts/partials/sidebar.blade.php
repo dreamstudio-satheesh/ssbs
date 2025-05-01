@@ -135,7 +135,7 @@
           </li>
           
           <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->is('social-media') ? ' active' : '' }}" href="{{ url('social-media') }}">
+            <a class="nav-main-link{{ request()->is('social-links') ? ' active' : '' }}" href="{{ url('social-links') }}">
               <i class="nav-main-link-icon fa fa-share-alt"></i>
               <span class="nav-main-link-name">Social Media Links</span>
             </a>
