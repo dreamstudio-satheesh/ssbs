@@ -27,8 +27,8 @@
             <form action="{{ route('categories.store') }}" method="POST">
                 @csrf
                 
-                <div class="row push">
-                    <div class="col-lg-8">
+                <div class="row justify-content-center push">
+                    <div class="col-md-8">
                         <div class="mb-4">
                             <label class="form-label" for="name">Category Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="name" name="name" required>

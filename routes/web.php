@@ -32,11 +32,11 @@ use App\Http\Controllers\{
 */
 
 // routes/web.php
-/* Route::get('/create-symlink', function () {
+Route::get('/symlink', function () {
     Artisan::call('storage:link');
     return '✅ Symlink created!';
 });
- */
+
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 

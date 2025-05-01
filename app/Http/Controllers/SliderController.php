@@ -1,86 +1,66 @@
 <?php
+/*
+ filepath: app/Http/Controllers/SliderController.php
+ description: This file contains the SliderController class which handles the CRUD operations for sliders in the admin panel.
+ */
 
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
-use Illuminate\Http\Request;
+use App\Http\Requests\SliderRequest;
+use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $sliders = Slider::all();
+        return view('sliders.index', compact('sliders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('sliders.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(SliderRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('sliders', 'public');
+        }
+
+        Slider::create($data);
+
+        return redirect()->route('sliders.index')->with('success', 'Slider created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Slider $slider)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Slider $slider)
     {
-        //
+        return view('sliders.edit', compact('slider'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Slider $slider)
+    public function update(SliderRequest $request, Slider $slider)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($slider->image_path);
+            $data['image_path'] = $request->file('image')->store('sliders', 'public');
+        }
+
+        $slider->update($data);
+
+        return redirect()->route('sliders.index')->with('success', 'Slider updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Slider $slider)
     {
-        //
+        Storage::disk('public')->delete($slider->image_path);
+        $slider->delete();
+
+        return redirect()->route('sliders.index')->with('success', 'Slider deleted successfully.');
     }
 }

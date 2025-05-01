@@ -4,107 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
-use Illuminate\Http\Request;
+use App\Http\Requests\BlogRequest;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $blogs = Blog::all();
+        $query = Blog::latest();
+
+        if (request('search')) {
+            $query->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('slug', 'like', '%' . request('search') . '%');
+        }
+
+        $blogs = $query->paginate(10);
         return view('blogs.index', compact('blogs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('blogs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|unique:blogs,slug',
-            'content' => 'required',
-            'feature_image' => 'nullable|image',
-            'seo_title' => 'nullable|string|max:255',
-            'seo_keywords' => 'nullable|string',
-            'seo_description' => 'nullable|string',
-        ]);
+        $data = $request->validated();
 
-        $blog = Blog::create($request->all());
+        if ($request->hasFile('feature_image')) {
+            $data['feature_image'] = $request->file('feature_image')->store('blogs', 'public');
+        }
+
+        // Auto-generate slug if not provided
+        if (!$data['slug']) {
+            $data['slug'] = \Str::slug($data['title']);
+        }
+
+        Blog::create($data);
+
         return redirect()->route('blogs.index')->with('success', 'Blog created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Blog $blog)
-    {
-        return view('blogs.show', compact('blog'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Blog $blog)
     {
         return view('blogs.edit', compact('blog'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Blog $blog)
+    public function update(BlogRequest $request, Blog $blog)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|unique:blogs,slug,' . $blog->id,
-            'content' => 'required',
-            'feature_image' => 'nullable|image',
-            'seo_title' => 'nullable|string|max:255',
-            'seo_keywords' => 'nullable|string',
-            'seo_description' => 'nullable|string',
-        ]);
+        $data = $request->validated();
 
-        $blog->update($request->all());
+        if ($request->hasFile('feature_image')) {
+            Storage::disk('public')->delete($blog->feature_image);
+            $data['feature_image'] = $request->file('feature_image')->store('blogs', 'public');
+        }
+
+        $blog->update($data);
+
         return redirect()->route('blogs.index')->with('success', 'Blog updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Blog $blog)
     {
+        Storage::disk('public')->delete($blog->feature_image);
         $blog->delete();
+
         return redirect()->route('blogs.index')->with('success', 'Blog deleted successfully.');
     }
 }

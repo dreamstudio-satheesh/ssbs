@@ -19,72 +19,69 @@
 
 <!-- Page Content -->
 <div class="content">
-    <!-- Awards Table -->
-    <div class="block block-rounded">
-        <div class="block-header block-header-default">
-            <h3 class="block-title">Awards List</h3>
-            <div class="block-options">
-                <a href="{{ route('awards.create') }}" class="btn btn-sm btn-primary">
-                    <i class="fa fa-plus me-1"></i> Add Award
+    <!-- Add Button -->
+    <div class="mb-4 text-end">
+        <a href="{{ route('awards.create') }}" class="btn btn-primary">
+            <i class="fa fa-plus me-1"></i> Add Award
+        </a>
+    </div>
+
+    <!-- Awards Grid -->
+    <div class="row row-deck gap-y-4">
+        @forelse($awards as $award)
+            <div class="col-md-6 col-xl-4">
+                <!-- Award Card -->
+                <div class="block block-rounded h-100 mb-0 shadow-sm border">
+                    <div class="block-content pb-8 bg-image" style="background-image: url('{{ $award->photo_path ? asset('storage/' . $award->photo_path) : asset('assets/media/photos/photo-placeholder.jpg') }}'); min-height: 200px; background-size: cover; background-position: center;">
+                        <span class="badge bg-success fw-bold p-2 text-uppercase position-absolute top-0 end-0 m-2">
+                            Award
+                        </span>
+                    </div>
+                    <div class="block-content">
+                        <h5 class="fw-bold mb-1">{{ $award->title }}</h5>
+                        <p class="text-muted fs-sm mb-3">
+                            {{ Str::limit($award->description, 100) }}
+                        </p>
+                    </div>
+                    <div class="block-content block-content-full bg-body-light">
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('awards.edit', $award->id) }}" class="btn btn-sm btn-alt-warning">
+                                <i class="fa fa-pencil-alt me-1"></i>Edit
+                            </a>
+                            <form action="{{ route('awards.destroy', $award->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-alt-danger" onclick="return confirm('Are you sure?')">
+                                    <i class="fa fa-trash me-1"></i>Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Award Card -->
+            </div>
+        @empty
+            <div class="col-12 text-center py-5">
+                <p class="text-muted">No awards found.</p>
+                <a href="{{ route('awards.create') }}" class="btn btn-primary">
+                    <i class="fa fa-plus me-1"></i>Create Your First Award
                 </a>
             </div>
-        </div>
-        <div class="block-content">
-            <div class="table-responsive">
-                <table class="table table-striped table-vcenter">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th class="d-none d-md-table-cell">Description</th>
-                            <th class="d-none d-sm-table-cell">Photo</th>
-                            <th class="text-center" style="width: 100px;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($awards as $award)
-                        <tr>
-                            <td class="fw-semibold">{{ $award->title }}</td>
-                            <td class="d-none d-md-table-cell">
-                                {{ Str::limit($award->description, 50) }}
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                @if ($award->photo_path)
-                                    <img src="{{ asset('storage/' . $award->photo_path) }}" alt="Award Photo" style="width: 50px; height: 50px; object-fit: cover;">
-                                @else
-                                    <span class="text-muted">No photo</span>
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <a href="{{ route('awards.edit', $award->id) }}" 
-                                       class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" 
-                                       data-bs-toggle="tooltip" 
-                                       aria-label="Edit" 
-                                       data-bs-original-title="Edit">
-                                        <i class="fa fa-pencil-alt"></i>
-                                    </a>
-                                    <form action="{{ route('awards.destroy', $award->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" 
-                                                class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" 
-                                                data-bs-toggle="tooltip" 
-                                                aria-label="Delete" 
-                                                data-bs-original-title="Delete"
-                                                onclick="return confirm('Are you sure you want to delete this award?')">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        @endforelse
     </div>
-    <!-- END Awards Table -->
+    <!-- END Awards Grid -->
 </div>
 <!-- END Page Content -->
 @endsection
+
+
+@push('css')
+<style>
+.block {
+    transition: transform 0.2s ease;
+}
+.block:hover {
+    transform: translateY(-5px);
+}
+</style>
+@endpush

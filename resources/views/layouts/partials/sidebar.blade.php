@@ -47,7 +47,7 @@
           <li class="nav-main-heading">About Us</li>
   
           <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->is('about') ? ' active' : '' }}" href="{{ url('about') }}">
+            <a class="nav-main-link{{ request()->is('pages') ? ' active' : '' }}" href="{{ url('pages') }}">
               <i class="nav-main-link-icon fa fa-info-circle"></i>
               <span class="nav-main-link-name">About</span>
             </a>
@@ -64,6 +64,14 @@
               <span class="nav-main-link-name">Awards</span>
             </a>
           </li>
+          
+          <li class="nav-main-item">
+            <a class="nav-main-link{{ request()->routeIs('blogs.*') ? ' active' : '' }}" href="{{ route('blogs.index') }}">
+              <i class="nav-main-link-icon fa fa-blog"></i>
+              <span class="nav-main-link-name">Blog</span>
+            </a>
+          </li>
+  
   
           <li class="nav-main-heading">Products</li>
   
@@ -123,14 +131,7 @@
               <span class="nav-main-link-name">Home Slider</span>
             </a>
           </li>
-  
-          <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->routeIs('blogs.*') ? ' active' : '' }}" href="{{ route('blogs.index') }}">
-              <i class="nav-main-link-icon fa fa-blog"></i>
-              <span class="nav-main-link-name">Blog</span>
-            </a>
-          </li>
-  
+
           <li class="nav-main-item">
             <a class="nav-main-link{{ request()->routeIs('steel-rates.*') ? ' active' : '' }}" href="{{ route('steel-rates.index') }}">
               <i class="nav-main-link-icon fa fa-industry"></i>

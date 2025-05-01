@@ -28,36 +28,40 @@
                 </div>
             </div>
             <div class="block-content">
+                <div class="row justify-content-center push">
+                    <div class="col-md-10">
 
-                <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" id="title" class="form-control" required>
+                        <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category_id" class="form-label">Category</label>
+                                <select name="category_id" id="category_id" class="form-control" required>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="photo" class="form-label">Photo</label>
+                                <input type="file" name="photo" id="photo" class="form-control" required>
+                            </div>
+
+
+
+                            <div class="block-content block-content-full block-content-sm bg-body-light text-end mb-3">
+
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+
+                        </form>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="category_id" class="form-label">Category</label>
-                        <select name="category_id" id="category_id" class="form-control" required>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="photo" class="form-label">Photo</label>
-                        <input type="file" name="photo" id="photo" class="form-control" required>
-                    </div>
-
-
-
-                    <div class="block-content block-content-full block-content-sm bg-body-light text-end mb-3">
-                       
-                        <button type="submit" class="btn btn-success">Save</button>
-                    </div>
-
-                </form>
+                </div>
             </div>
         </div>
 
