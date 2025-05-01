@@ -80,7 +80,19 @@ Route::get('/migrate', function () {
         abort(403, 'Unauthorized');
     }
 
-    $exitCode = Artisan::call('migrate');
+    if (request('fresh') === 'true') {
+        // Run fresh migration
+        $exitCode = Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true
+        ]);
+    } else {
+        // Run regular migration
+        $exitCode = Artisan::call('migrate', [
+            '--force' => true
+        ]);
+       
+    }
 
     $output = Artisan::output();
 
@@ -111,4 +123,3 @@ Route::get('/pull', function () {
         'output' => $output
     ]);
 })->middleware('throttle:3,1'); // Limit to 3 requests per minute
-
