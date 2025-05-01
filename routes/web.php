@@ -38,7 +38,7 @@ Route::get('/symlink', function () {
 });
 
 Route::get('/pull', function () {
-    $pull= Artisan::call('git:pull');
+    $pull= Artisan::call('git:pull')->getOutput();
     return '✅ git pull executed!<br> '.$pull;
 });
 
