@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\{
     HomeController,
@@ -16,7 +15,7 @@ use App\Http\Controllers\{
     ContactController,
     TestimonialController,
     SliderController,
-    SeoSettingController,
+    PageController,
     EnquiryController,
     SteelRateController
 };
@@ -34,10 +33,65 @@ use App\Http\Controllers\{
 */
 
 // routes/web.php
+
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::match(['get', 'post'], '/dashboard', function () {
+    return view('dashboard');
+});
+
+// Admin Dashboard (Home)
+Route::middleware('auth')->get('/', [HomeController::class, 'index'])->name('dashboard');
+
+// Admin Protected Routes (Require Auth)
+Route::middleware('auth')->group(function () {
+    Route::resource('blogs', BlogController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('services', ServiceController::class);
+    Route::resource('projects', ProjectController::class);
+    Route::resource('galleries', PhotoGalleryController::class);
+    Route::resource('awards', AwardController::class);
+    Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('testimonials', TestimonialController::class);
+    Route::resource('sliders', SliderController::class);
+    Route::resource('pages', PageController::class);
+    Route::resource('enquiries', EnquiryController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('steel-rates', SteelRateController::class);
+});
+
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
 Route::get('/symlink', function () {
     Artisan::call('storage:link');
     return '✅ Symlink created!';
 });
+
+Route::get('/migrate', function () {
+    // Security check - require a secret token
+    if (request('token') !== config('app.git_pull_token')) {
+        abort(403, 'Unauthorized');
+    }
+
+    $exitCode = Artisan::call('migrate');
+
+    $output = Artisan::output();
+
+    return response()->json([
+        'success' => $exitCode === 0,
+        'output' => $output
+    ]);
+})->middleware('throttle:3,1'); // Limit to 3 requests per minute
+
 
 Route::get('/pull', function () {
     // Security check - require a secret token
@@ -60,46 +114,3 @@ Route::get('/pull', function () {
     ]);
 })->middleware('throttle:3,1'); // Limit to 3 requests per minute
 
-
-
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
-
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::match(['get', 'post'], '/dashboard', function () {
-    return view('dashboard');
-});
-Route::view('/pages/slick', 'pages.slick');
-Route::view('/pages/datatables', 'pages.datatables');
-Route::view('/pages/blank', 'pages.blank');
-
-
-
-
-
-
-// Admin Dashboard (Home)
-Route::middleware('auth')->get('/', [HomeController::class, 'index'])->name('dashboard');
-
-// Admin Protected Routes (Require Auth)
-Route::middleware('auth')->group(function () {
-    Route::resource('blogs', BlogController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('products', ProductController::class);
-    Route::resource('services', ServiceController::class);
-    Route::resource('projects', ProjectController::class);
-    Route::resource('galleries', PhotoGalleryController::class);
-    Route::resource('awards', AwardController::class);
-    Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
-    Route::resource('testimonials', TestimonialController::class);
-    Route::resource('sliders', SliderController::class);
-    Route::resource('seo-settings', SeoSettingController::class)->only(['index', 'update']);
-    Route::resource('enquiries', EnquiryController::class)->only(['index', 'show', 'destroy']);
-    Route::resource('steel-rates', SteelRateController::class);
-});
-
-
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
