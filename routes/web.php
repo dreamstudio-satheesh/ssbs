@@ -13,7 +13,6 @@ use App\Http\Controllers\{
     AwardController,
     CategoryController,
     ContactController,
-    TestimonialController,
     SliderController,
     PageController,
     EnquiryController,
@@ -56,7 +55,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('galleries', PhotoGalleryController::class);
     Route::resource('awards', AwardController::class);
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
-    Route::resource('testimonials', TestimonialController::class);
     Route::resource('sliders', SliderController::class);
     Route::resource('pages', PageController::class);
     Route::resource('enquiries', EnquiryController::class)->only(['index', 'show', 'destroy']);

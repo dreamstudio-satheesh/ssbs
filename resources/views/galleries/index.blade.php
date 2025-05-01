@@ -18,7 +18,7 @@
         <div class="row items-push">
             @foreach ($galleries as $gallery)
                 <div class="col-md-4 animated fadeIn">
-                    <div class="options-container fx-item-zoom-in">
+                    <div class="options-container fx-item-zoom-in" style="height: 300px;">
                         <img class="img-fluid options-item" src="{{ asset('storage/' . $gallery->photo_path) }}"
                             alt="{{ $gallery->title }}">
                         <div class="options-overlay bg-black-75">
