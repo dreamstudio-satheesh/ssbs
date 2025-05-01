@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PageRequest extends FormRequest
+class SteelRateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,6 @@ class PageRequest extends FormRequest
     {
         // Only allow authenticated users for create, store, edit, update, destroy
         if (in_array($this->route()->getActionMethod(), ['store', 'update', 'destroy'])) {
-            // Check if the user is authenticated
             return $this->user() !== null;
         }
 
@@ -31,11 +30,9 @@ class PageRequest extends FormRequest
     public function rules()
     {
         return [
-            'page_name' => 'required|string|max:255|unique:pages,page_name,' . $this->page,
-            'meta_title' => 'nullable|string|max:255',
-            'meta_keywords' => 'nullable|string',
-            'meta_description' => 'nullable|string',
-            'content' => 'required',
+            'product_id' => 'required|exists:products,id',
+            'steel_rate_value' => 'required|numeric|min:0',
+            'effective_date' => 'required|date',
         ];
     }
 }

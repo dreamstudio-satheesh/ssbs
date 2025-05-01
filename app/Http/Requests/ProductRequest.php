@@ -8,6 +8,13 @@ class ProductRequest extends FormRequest
 {
     public function authorize()
     {
+        // Only allow authenticated users for create, store, edit, update, destroy
+        if (in_array($this->route()->getActionMethod(), ['store', 'update', 'destroy'])) {
+            // Check if the user is authenticated
+            return $this->user() !== null;
+        }
+
+        // Allow guests to view index/show
         return true;
     }
 
@@ -26,7 +33,7 @@ class ProductRequest extends FormRequest
         if ($this->isMethod('post')) {
             $rules['photos'] = 'required|array';
             $rules['photos.*'] = 'image|mimes:jpeg,png,jpg|max:2048';
-        } 
+        }
         // For update operation
         else {
             $rules['photos'] = 'nullable|array';
