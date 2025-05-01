@@ -37,6 +37,11 @@ Route::get('/symlink', function () {
     return '✅ Symlink created!';
 });
 
+Route::get('/pull', function () {
+    Artisan::call('git:pull');
+    return '✅ Symlink created!';
+});
+
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 
