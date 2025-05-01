@@ -107,7 +107,7 @@
           </li>
   
           <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->routeIs('testimonials.*') ? ' active' : '' }}" href="{{ route('testimonials.index') }}">
+            <a class="nav-main-link{{ request()->routeIs('enquiries.*') ? ' active' : '' }}" href="{{ route('enquiries.index') }}">
               <i class="nav-main-link-icon fa fa-comments"></i>
               <span class="nav-main-link-name">Client Feedback</span>
             </a>
