@@ -38,8 +38,8 @@ Route::get('/symlink', function () {
 });
 
 Route::get('/pull', function () {
-    Artisan::call('git:pull');
-    return '✅ Symlink created!';
+    $pull= Artisan::call('git:pull');
+    return '✅ git pull executed!<br> '.$pull;
 });
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
