@@ -52,12 +52,7 @@
               <span class="nav-main-link-name">Pages</span>
             </a>
           </li>
-         {{--  <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->is('testimonials') ? ' active' : '' }}" href="{{ url('testimonials') }}">
-              <i class="nav-main-link-icon fa fa-users-cog"></i>
-              <span class="nav-main-link-name">Testimonials</span>
-            </a>
-          </li> --}}
+        
           <li class="nav-main-item">
             <a class="nav-main-link{{ request()->is('awards') ? ' active' : '' }}" href="{{ url('awards') }}">
               <i class="nav-main-link-icon fa fa-trophy"></i>
