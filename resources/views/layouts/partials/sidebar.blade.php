@@ -66,6 +66,13 @@
               <span class="nav-main-link-name">Blog</span>
             </a>
           </li>
+          
+          <li class="nav-main-item">
+            <a class="nav-main-link{{ request()->routeIs('sliders.*') ? ' active' : '' }}" href="{{ route('sliders.index') }}">
+              <i class="nav-main-link-icon fa fa-sliders-h"></i>
+              <span class="nav-main-link-name">Home Slider</span>
+            </a>
+          </li>
   
   
           <li class="nav-main-heading">Products</li>
@@ -117,13 +124,6 @@
             <a class="nav-main-link{{ request()->routeIs('contacts.*') ? ' active' : '' }}" href="{{ route('contacts.index') }}">
               <i class="nav-main-link-icon fa fa-envelope"></i>
               <span class="nav-main-link-name">Contact Enquiries</span>
-            </a>
-          </li>
-  
-          <li class="nav-main-item">
-            <a class="nav-main-link{{ request()->routeIs('sliders.*') ? ' active' : '' }}" href="{{ route('sliders.index') }}">
-              <i class="nav-main-link-icon fa fa-sliders-h"></i>
-              <span class="nav-main-link-name">Home Slider</span>
             </a>
           </li>
 
