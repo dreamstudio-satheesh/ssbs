@@ -11,6 +11,7 @@ class TestimonialRequest extends FormRequest
         return [
             'client_name' => 'required|string|max:255',
             'feedback' => 'required|string',
+            'photo' => $this->isMethod('put') ? 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' : 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }
