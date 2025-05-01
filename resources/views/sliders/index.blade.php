@@ -34,7 +34,7 @@
                 <div class="row items-push">
                     @foreach ($sliders as $slider)
                         <div class="col-md-4 animated fadeIn">
-                            <div class="options-container fx-item-zoom-in">
+                            <div class="options-container fx-item-zoom-in" style="min-height: 300px;">
                                 <img class="img-fluid options-item" src="{{ asset('storage/' . $slider->image_path) }}"
                                     alt="{{ $slider->title }}">
                                 <div class="options-overlay bg-black-75">
