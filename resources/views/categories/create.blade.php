@@ -40,7 +40,7 @@
                                 <option value="">Select Type</option>
                                 <option value="product">Product</option>
                                 <option value="service">Service</option>
-                                <option value="service">Project</option>
+                                <option value="project">Project</option>
                                 <option value="blog">Blog</option>
                                 <option value="gallery">Gallery</option>
                             </select>

@@ -17,7 +17,7 @@ class ServiceController extends Controller
 
     public function create()
     {
-        return $categories = Category::where('type', 'service')->get(); // <-- type: service
+        $categories = Category::where('type', 'service')->get(); // <-- type: service
         return view('services.create', compact('categories'));
     }
 
