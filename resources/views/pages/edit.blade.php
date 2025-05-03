@@ -49,7 +49,7 @@
 
         <div class="mb-3">
           <label for="content" class="form-label">Content</label>
-          <textarea name="content" id="content" class="form-control" rows="10" required>{{ old('content', $page->content) }}</textarea>
+          <textarea name="content" id="content" class="form-control" rows="10" >{{ old('content', $page->content) }}</textarea>
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Update</button>
