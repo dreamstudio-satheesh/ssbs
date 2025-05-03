@@ -18,7 +18,7 @@ class SteelRateController extends Controller
 
     public function create()
     {
-        $products = Product::all();
+        $products = Product::whereDoesntHave('steelRates')->get(['id', 'title']);
         return view('steel-rates.create', compact('products'));
     }
 
