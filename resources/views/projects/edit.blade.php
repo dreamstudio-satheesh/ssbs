@@ -36,6 +36,18 @@
                         </div>
 
                         <div class="mb-4">
+                            <label class="form-label" for="category_id">Category <span class="text-danger">*</span></label>
+                            <select class="form-select" id="category_id" name="category_id" required>
+                                <option value="">Select Category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
                             <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
                             <textarea class="form-control" id="description" name="description">{{ old('description', $project->description) }}</textarea>
                         </div>
