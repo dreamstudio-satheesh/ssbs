@@ -29,6 +29,11 @@ class Product extends Model
     {
         return json_decode($value, true); // Decode JSON string to array
     }
+    
+    public function steelRates()
+    {
+        return $this->hasMany(SteelRate::class, 'product_id');
+    }
 
     public function category()
     {
