@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\BlogApiController;
 use App\Http\Controllers\Api\{
     ProductController as ApiProductController,
-    BlogApiController as ApiBlogController,
     CategoryController as ApiCategoryController,
     SliderController as ApiSliderController,
     ServiceController as ApiServiceController,
@@ -22,8 +22,8 @@ Route::get('categories', [ApiCategoryController::class, 'index']);
 
 Route::get('/sliders', [ApiSliderController::class, 'index']);
 
-Route::get('/blogs', [ApiBlogController::class, 'index']);
-Route::get('/blogs/{slug}', [ApiBlogController::class, 'show']);
+Route::get('/blogs', [BlogApiController::class, 'index']);
+Route::get('/blogs/{slug}', [BlogApiController::class, 'show']);
 
 Route::get('products', [ApiProductController::class, 'index']);
 Route::get('products/{id}', [ApiProductController::class, 'show']);
