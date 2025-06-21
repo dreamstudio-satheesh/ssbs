@@ -13,9 +13,9 @@ class Service extends Model
         'facilities', 'seo_title', 'seo_keywords'
     ];
 
-    protected $casts = [
-        'photos' => 'array'
-    ];
+    // protected $casts = [
+    //     'photos' => 'array'
+    // ];
 
     // public function getImageUrlAttribute()
     // {
