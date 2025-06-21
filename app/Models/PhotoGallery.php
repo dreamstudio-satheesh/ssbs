@@ -11,6 +11,13 @@ class PhotoGallery extends Model
    
     protected $fillable = ['title', 'photo_path', 'category_id'];
 
+
+    public function getImageUrlAttribute()
+    {
+        $firstPhoto = $this->photos[0] ?? null;
+        return $firstPhoto ? asset('storage/' . ltrim($firstPhoto, '/')) : null;
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

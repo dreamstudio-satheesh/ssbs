@@ -17,6 +17,12 @@ class Service extends Model
         'photos' => 'array'
     ];
 
+    public function getImageUrlAttribute()
+    {
+        $firstPhoto = $this->photos[0] ?? null;
+        return $firstPhoto ? asset('storage/' . ltrim($firstPhoto, '/')) : null;
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
