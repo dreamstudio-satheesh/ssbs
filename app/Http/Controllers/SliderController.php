@@ -51,7 +51,7 @@ class SliderController extends Controller
             $data['image_path'] = $request->file('image')->store('sliders', 'public');
         }
 
-        $slider->update($data);
+       return $slider->update($data);
 
         return redirect()->route('sliders.index')->with('success', 'Slider updated successfully.');
     }
