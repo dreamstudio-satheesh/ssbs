@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\{
     ProductController as ApiProductController,
+    CategoryController as ApiCategoryController,
     ServiceController as ApiServiceController,
     ProjectController as ApiProjectController,
     GalleryController as ApiGalleryController,
@@ -13,6 +14,9 @@ use App\Http\Controllers\Api\{
 // API Routes (public or authenticated if needed)
 
     // Public API routes for Products, Services, Projects, etc.
+
+    Route::get('categories', [ApiCategoryController::class, 'index']);
+
     Route::get('products', [ApiProductController::class, 'index']);
     Route::get('products/{id}', [ApiProductController::class, 'show']);
     
