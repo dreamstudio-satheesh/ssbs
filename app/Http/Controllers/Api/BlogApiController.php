@@ -17,7 +17,7 @@ class BlogApiController extends Controller
                   ->orWhere('slug', 'like', '%' . $request->search . '%');
         }
 
-        $blogs = $query->select('id', 'title', 'slug', 'feature_image', 'content', 'created_at')->paginate(10);
+        $blogs = $query->select('id', 'title', 'slug', 'feature_image', 'content', 'created_at')->paginate(5);
 
         return response()->json([
             'blogs' => $blogs,
